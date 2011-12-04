@@ -1,0 +1,7 @@
+/* Override here any style defined by web-app-theme */
+.tagline {
+	margin-top: -20px;
+	display: block;
+	font-size: 15px;
+	padding-left: 20px;
+}

@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  text: MyString
+  translation: MyString
+  ipa: MyString
+  example: MyString
+
+two:
+  text: MyString
+  translation: MyString
+  ipa: MyString
+  example: MyString

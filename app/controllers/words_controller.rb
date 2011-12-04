@@ -1,6 +1,6 @@
 class WordsController < ApplicationController
   
-  before_filter :authenticate, :only => [:new, :create, :update, :destroy]
+  before_filter :authenticate, :except => [:index, :show]
   
   # GET /words
   # GET /words.xml

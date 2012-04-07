@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   before_filter :admin_user,   :only => :destroy
   before_filter :signed_in_user, :only => [:new, :create]
   
+  layout 'sign', :only => [:new]
+  
   def index
     @title = "All users"
     @users = User.paginate(:page => params[:page])
@@ -24,8 +26,8 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to @user
+      flash[:success] = "Welcome to Lexi!"
+      redirect_to root_path
     else
       @title = "Sign Up"
       @user.password = ""
@@ -60,10 +62,6 @@ class UsersController < ApplicationController
   end
   
   private
-
-    def authenticate
-      deny_access unless signed_in?
-    end
     
     def correct_user
       @user = User.find(params[:id])

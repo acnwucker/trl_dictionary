@@ -1,14 +1,25 @@
-<h1>Listing words</h1>
+<% if signed_in? %>
+	<div class="actions-right">
+		<%= link_to(new_language_word_path(@language), :class => "button") do %>
+			<%= image_tag "add.png" %>
+			New Word
+		<% end %>
+	</div>
+<% end %>
+
+<h1>Words for <%= @language.name %></h1>
 
 <table class="table">
   <tr>
     <th>Text</th>
     <th>Translation</th>
     <th>Ipa</th>
-    <th>Example</th>
+    <th class="sent-example">Example Sentence</th>
     <th></th>
-    <th></th>
-    <th></th>
+		<% if signed_in? %>
+	    <th></th>
+	    <th></th>
+		<% end %>
   </tr>
 
 <% @words.each do |word| %>
@@ -17,14 +28,12 @@
     <td><%= word.translation %></td>
     <td><%= word.ipa %></td>
     <td><%= word.example %></td>
-    <td><%= link_to 'Edit', edit_language_word_path(word.language, word) %></td>
-    <td><%= link_to 'Destroy', [word.language, word], :confirm => 'Are you sure?', :method => :delete %></td>
+		<% if signed_in? %>
+    	<td><%= link_to 'Edit', edit_language_word_path(word.language, word) %></td>
+	    <td><%= link_to 'Delete', [word.language, word], :confirm => 'Are you sure?', :method => :delete %></td>
+		<% end %>
   </tr>
 <% end %>
 </table>
 
-<br />
-<%= link_to(new_language_word_path(@language), :class => "button") do %>
-	<%= image_tag "/images/web-app-theme/icons/add.png" %>
-	New Word
-<% end %>
+<%= link_to 'Back', root_path %>

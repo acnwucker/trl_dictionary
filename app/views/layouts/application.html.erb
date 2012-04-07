@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Lexi - The Lexicon Documenter</title>
-  <%= stylesheet_link_tag "application" %>
-  <%= javascript_include_tag "application" %>
+  <title>Lexi</title>
+  <%= stylesheet_link_tag 'web_app_theme' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tag %>
 </head>
 <body>
-  <div id="container">
-		<%= render 'layouts/header' %>   
+  <div id="container" class="wat-cf">
+    <%= render 'layouts/header' %>
     <div id="wrapper" class="wat-cf">
       <div class="flash">
         <% flash.each do |type, message| -%>
@@ -18,13 +18,17 @@
         <% end -%>
       </div>
       <div id="main">
-        <%= yield %>
-				<%= render 'layouts/footer' %>
+				<div class="block">
+					<div class="content">
+							<div class="inner">
+        				<%= yield %>
+					</div>
+				</div>
+				</div>
       </div>
-      <div id="sidebar">
-        <%= yield :sidebar %>
-      </div>
-    </div>    
+    </div>
+    <%= render 'layouts/footer' %>
+
   </div>
 </body>
 </html>

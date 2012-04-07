@@ -1,31 +1,39 @@
-<h1>Listing languages</h1>
+<% if signed_in? %>
+	<div class="actions-right">
+		<%= link_to(new_language_path, :class => "button") do %>
+			<%= image_tag "add.png" %>
+			New Language
+		<% end %>
+	</div>
+<% end %>
 
-<table>
+<h1>Languages</h1>
+
+<table class="table">
   <tr>
     <th>Name</th>
-    <th>Description</th>
+    <th class="desc">Description</th>
     <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+		<% if signed_in? %>
+    	<th></th>
+	    <th></th>
+		<% end %>
+</tr>
 
 <% @languages.each do |language| %>
   <tr>
-    <td><%= language.name %></td>
+    <td><%= link_to "#{language.name}", language_words_path(language) %> </td>
     <td><%= language.description %></td>
-		<td><%= link_to 'Words', language_words_path(language) %></td>
-    <td><%= link_to 'Show', language %></td>
-    <td><%= link_to 'Edit', edit_language_path(language) %></td>
-    <td><%= link_to 'Destroy', language, :confirm => 'Are you sure?', :method => :delete %></td>
+		<% if signed_in? %>
+	    <td><%= link_to 'Edit', edit_language_path(language) %></td>
+	    <td><%= link_to 'Delete', language, :confirm => 'Are you sure?', :method => :delete %></td>
+		<% end %>
   </tr>
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'New Language', new_language_path %>
-
-<br />
-<br />
-
-<%= link_to "Sign up now!", signup_path %>
+<% unless signed_in? %>
+	<div class="sign_up">
+		<%= link_to "Sign up now!", signup_path, :class => "sign-up-button" %>
+	</div>
+<% end %>

@@ -31,7 +31,7 @@ gem 'sqlite3'
 # end
 
 group :development, :test do
-  gem 'web-app-theme', '>= 0.6.2'
+#  gem 'web-app-theme', '>= 0.6.2'
 end
 
 # Gems used only for assets and not required
@@ -43,3 +43,5 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+gem 'web-app-theme', git: 'git://github.com/pilu/web-app-theme.git'

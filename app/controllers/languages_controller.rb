@@ -1,4 +1,7 @@
 class LanguagesController < ApplicationController
+  
+  before_filter :authenticate, :except => [:index, :show]
+  
   # GET /languages
   # GET /languages.xml
   def index
@@ -44,7 +47,7 @@ class LanguagesController < ApplicationController
 
     respond_to do |format|
       if @language.save
-        format.html { redirect_to(@language, :notice => 'Language was successfully created.') }
+        format.html { redirect_to(root_path, :notice => 'Language was successfully created.') }
         format.xml  { render :xml => @language, :status => :created, :location => @language }
       else
         format.html { render :action => "new" }
@@ -60,7 +63,7 @@ class LanguagesController < ApplicationController
 
     respond_to do |format|
       if @language.update_attributes(params[:language])
-        format.html { redirect_to(@language, :notice => 'Language was successfully updated.') }
+        format.html { redirect_to(root_path, :notice => 'Language was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

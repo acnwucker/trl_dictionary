@@ -1,6 +1,5 @@
-<h1>Editing word</h1>
+<h1>Editing word for <%= @language.name %></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', [@language, @word] %> |
 <%= link_to 'Back', language_words_path(@language) %>

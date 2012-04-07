@@ -64,7 +64,7 @@ class WordsController < ApplicationController
 
     respond_to do |format|
       if @word.update_attributes(params[:word])
-        format.html { redirect_to([@language, @word], :notice => 'Word was successfully updated.') }
+        format.html { redirect_to(language_words_url(@language), :notice => 'Word was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -86,12 +86,6 @@ class WordsController < ApplicationController
   end
 
   protected
-
-    def authenticate
-      authenticate_or_request_with_http_basic do |username, password|
-        username == "jordan" && password == "lukmac"
-      end
-    end
     
     def find_language
       @language = Language.find(params[:language_id])

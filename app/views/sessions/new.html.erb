@@ -1,17 +1,41 @@
-<h1>Sign in</h1>
+<h1><%= link_to "Lexi", root_path %></h1>
 
-<%= form_for(:session, :url => sessions_path) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Sign in" %>
-  </div>
-<% end %>
+<div class="block" id="block-login">
+	<h2>Login</h2>
+	<div class="content login">
+		 <div class="flash">
+        <% flash.each do |type, message| -%>
+          <div class="message <%= type %>">
+            <p><%= message %></p>
+          </div>
+        <% end -%>
+      </div>
+		<%= form_for(:session, :url => sessions_path, :html => { :class => "form login"}) do |f| %>
+  	<div class="group wat-cf">
+			<div class="left">
+    		<%= f.label :email, :class => "label right" %>
+			</div>
+			<div class="right">
+    		<%= f.text_field :email, :class => "text_field" %>
+			</div>
+  	</div>
+		<div class="group wat-cf">
+			<div class="left">
+    		<%= f.label :password, :class => "label right" %>
+			</div>
+			<div class="right">
+    		<%= f.password_field :password, :class => "text_field" %>
+			</div>
+  	</div>
+		<div class="group navform wat-cf">
+			<div class="right">
+				<button class="button" type="submit">
+		 			<img src="images/web-app-theme/icons/key.png" alt="Save"> Login
+		  	</button>
+			</div>
+		</div>
+		<% end %>
+ 	</div>
+</div>
 
 <p>New user? <%= link_to "Sign up now!", signup_path %></p>

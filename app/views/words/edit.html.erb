@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @word %> |
-<%= link_to 'Back', words_path %>
+<%= link_to 'Show', [@language, @word] %> |
+<%= link_to 'Back', language_words_path(@language) %>

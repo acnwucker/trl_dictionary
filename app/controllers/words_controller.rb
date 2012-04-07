@@ -1,11 +1,12 @@
 class WordsController < ApplicationController
   
   before_filter :authenticate, :except => [:index, :show]
+  before_filter :find_language
   
   # GET /words
   # GET /words.xml
   def index
-    @words = Word.all
+    @words = @language.words
 
     respond_to do |format|
       format.html # index.html.erb
@@ -43,11 +44,11 @@ class WordsController < ApplicationController
   # POST /words
   # POST /words.xml
   def create
-    @word = Word.new(params[:word])
+    @word = @language.words.build(params[:word])
 
     respond_to do |format|
       if @word.save
-        format.html { redirect_to(@word, :notice => 'Word was successfully created.') }
+        format.html { redirect_to(language_words_url(@language), :notice => 'Word was successfully created.') }
         format.xml  { render :xml => @word, :status => :created, :location => @word }
       else
         format.html { render :action => "new" }
@@ -63,7 +64,7 @@ class WordsController < ApplicationController
 
     respond_to do |format|
       if @word.update_attributes(params[:word])
-        format.html { redirect_to(@word, :notice => 'Word was successfully updated.') }
+        format.html { redirect_to([@language, @word], :notice => 'Word was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -79,7 +80,7 @@ class WordsController < ApplicationController
     @word.destroy
 
     respond_to do |format|
-      format.html { redirect_to(words_url) }
+      format.html { redirect_to(language_words_url(@language)) }
       format.xml  { head :ok }
     end
   end
@@ -90,6 +91,10 @@ class WordsController < ApplicationController
       authenticate_or_request_with_http_basic do |username, password|
         username == "jordan" && password == "lukmac"
       end
+    end
+    
+    def find_language
+      @language = Language.find(params[:language_id])
     end
    
 end

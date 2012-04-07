@@ -1,5 +1,7 @@
 TrlDictionary::Application.routes.draw do
-  resources :words
+  resources :languages do
+    resources :words
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -50,7 +52,7 @@ TrlDictionary::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "words#index"
+  root :to => "languages#index"
 
   # See how all your routes lay out with "rake routes"
 

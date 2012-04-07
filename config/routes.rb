@@ -9,6 +9,9 @@ TrlDictionary::Application.routes.draw do
   match '/signup',  :to => 'users#new'
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
+  
+  match '/contact', :to => 'pages#contact'
+  match '/about',   :to => 'pages#about'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

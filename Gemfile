@@ -45,3 +45,5 @@ end
 gem 'jquery-rails'
 
 gem 'web-app-theme', git: 'git://github.com/pilu/web-app-theme.git'
+
+gem 'pg'

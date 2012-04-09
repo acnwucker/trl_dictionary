@@ -30,9 +30,10 @@ class UsersController < ApplicationController
       redirect_to root_path
     else
       @title = "Sign Up"
+      flash[:error] = "Check valid email and/or password."
       @user.password = ""
       @user.password_confirmation = ""
-      render 'new'
+      redirect_to signup_path
     end
   end
   
